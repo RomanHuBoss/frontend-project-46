@@ -13,7 +13,12 @@ extends:
   - 'plugin:jest/recommended'
 
 parserOptions:
-  ecmaVersion: latest
+  ecmaVersion: 12
+  sourceType: 'module'
+  allowImportExportEverywhere: true
+  ecmaFeatures:
+    modules: true,
+    legacyDecorators: true
 
 rules:
   no-console: 0

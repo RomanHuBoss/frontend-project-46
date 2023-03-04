@@ -27,10 +27,10 @@ const gendiff = (filepath1, filepath2) => {
     const allKeysSorted = [...new Set(Object.keys(json1).concat(Object.keys(json2)))].sort();
 
     const result = ['{'];
+    const value1 = json1[key];
+    const value2 = json2[key];
 
     allKeysSorted.forEach((key) => {
-      const value1 = json1[key];
-      const value2 = json2[key];
       if (value1 !== undefined && value2 !== undefined) {
         if (value1 === value2) {
           result.push(`${key}: ${value1}`);
@@ -46,7 +46,6 @@ const gendiff = (filepath1, filepath2) => {
     });
 
     result.push('}');
-
     return result.join('\n');
   }
 

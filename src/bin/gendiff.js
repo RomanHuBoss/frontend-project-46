@@ -3,20 +3,18 @@ import * as fs from 'node:fs';
 import * as path from 'path';
 
 const getFileData = (filepath) => {
-  if (filepath[0] !== '/') {
-    filepath = path.resolve(filepath);
-  }
+  const realPath = (filepath[0] !== '/') ? path.resolve(filepath) : filepath;
 
   try {
-    return fs.readFileSync(filepath, "utf8");
+    return fs.readFileSync(realPath, 'utf8');
   } catch (err) {
     console.error(err);
   }
+
+  return null;
 };
 
-const getFileExtension = (filepath) => {
-  return filepath.split('.').pop();
-};
+const getFileExtension = (filepath) => filepath.split('.').pop();
 
 const gendiff = (filepath1, filepath2) => {
   const rawFileData1 = getFileData(filepath1);
@@ -27,7 +25,7 @@ const gendiff = (filepath1, filepath2) => {
     const json2 = JSON.parse(rawFileData2);
 
     const allKeysSorted = [...new Set(Object.keys(json1).concat(Object.keys(json2)))].sort();
-    
+
     const result = ['{'];
 
     allKeysSorted.forEach((key) => {
@@ -35,15 +33,15 @@ const gendiff = (filepath1, filepath2) => {
       const value2 = json2[key];
       if (value1 !== undefined && value2 !== undefined) {
         if (value1 === value2) {
-          result.push(key + ': ' + value1);
+          result.push(`${key}: ${value1}`);
         } else {
-          result.push('- ' + key + ': ' + value1);
-          result.push('+ ' + key + ': ' + value2);  
-        }        
+          result.push(`- ${key}: ${value1}`);
+          result.push(`+ ${key}: ${value2}`);
+        }
       } else if (value1 !== undefined && value2 === undefined) {
-        result.push('- ' + key + ': ' + value1);
+        result.push(`- ${key}: ${value1}`);
       } else if (value1 === undefined && value2 !== undefined) {
-        result.push('+ ' + key + ': ' + value2);
+        result.push(`+ ${key}: ${value2}`);
       }
     });
 
@@ -52,27 +50,22 @@ const gendiff = (filepath1, filepath2) => {
     return result.join('\n');
   }
 
+  return null;
 };
 
-
-//разбор командной строки
+// разбор командной строки
 ((program) => {
-  
   program
-  .version('1.0.0')
-  .argument('<filepath1>')
-  .argument('<filepath2>')
-  .description('Compares two configuration files and shows a difference.')
-  .option('-f, --format <type>', 'output format')
-  .action(() => {
-    gendiff(...program.processedArgs);
-  });
+    .version('1.0.0')
+    .argument('<filepath1>')
+    .argument('<filepath2>')
+    .description('Compares two configuration files and shows a difference.')
+    .option('-f, --format <type>', 'output format')
+    .action(() => gendiff(...program.processedArgs));
 
-  program.parse();  
-  
+  program.parse();
+
   return program.processedArgs;
-
 })(new Command());
 
 export default gendiff;
-

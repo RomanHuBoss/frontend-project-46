@@ -14,6 +14,8 @@ export const getFileData = (filepath) => {
   return null;
 };
 
+export const removeSpaces = (str) => str.replace(/[\s\r\n]+/g, ' ');
+
 const getFileExtension = (filepath) => filepath.split('.').pop();
 
 const gendiff = (filepath1, filepath2) => {
@@ -54,7 +56,9 @@ const gendiff = (filepath1, filepath2) => {
 };
 
 // разбор командной строки
-((program) => {
+const handleCommandLine = () => {
+  const program = new Command();
+  
   program
     .version('1.0.0')
     .argument('<filepath1>')
@@ -66,9 +70,16 @@ const gendiff = (filepath1, filepath2) => {
       console.log(result);
     });
 
-  program.parse();
+  program.exitOverride();
+
+  try {
+    program.parse(process.argv);
+  } catch (err) {
+  }
 
   return program.processedArgs;
-})(new Command());
+};
+
+handleCommandLine();
 
 export default gendiff;

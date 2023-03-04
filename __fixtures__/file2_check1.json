@@ -1,6 +1,6 @@
 {
     "boolean": "true",
-    "number": 5,
+    "candle": "dark",
     "float": 1.25,
-    "candle": "dark"
+    "number": 5
 }

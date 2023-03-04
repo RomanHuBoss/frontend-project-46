@@ -2,7 +2,7 @@
   "name": "@hexlet/code",
   "version": "1.0.0",
   "description": "[![Actions Status](https://github.com/RomanHuBoss/frontend-project-46/workflows/hexlet-check/badge.svg)](https://github.com/RomanHuBoss/frontend-project-46/actions)",
-  "main": "src/bin/gendiff.js",
+  "main": "src/gendiff.js",
   "type": "module",
   "engines": {
     "node": ">=14"

@@ -58,7 +58,7 @@ const gendiff = (filepath1, filepath2) => {
 // разбор командной строки
 const handleCommandLine = () => {
   const program = new Command();
-  
+
   program
     .version('1.0.0')
     .argument('<filepath1>')
@@ -75,6 +75,7 @@ const handleCommandLine = () => {
   try {
     program.parse(process.argv);
   } catch (err) {
+    console.log(err);
   }
 
   return program.processedArgs;

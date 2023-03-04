@@ -3,9 +3,6 @@
   "version": "1.0.0",
   "description": "[![Actions Status](https://github.com/RomanHuBoss/frontend-project-46/workflows/hexlet-check/badge.svg)](https://github.com/RomanHuBoss/frontend-project-46/actions)",
   "main": "src/bin/gendiff.js",
-  "bin": {
-    "@hexlet/code": "src/bin/gendiff.js"
-  },
   "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"

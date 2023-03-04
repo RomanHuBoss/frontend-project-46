@@ -2,7 +2,7 @@ import { Command } from 'commander';
 import * as fs from 'node:fs';
 import * as path from 'path';
 
-const getFileData = (filepath) => {
+export const getFileData = (filepath) => {
   const realPath = (filepath[0] !== '/') ? path.resolve(filepath) : filepath;
 
   try {
@@ -61,7 +61,10 @@ const gendiff = (filepath1, filepath2) => {
     .argument('<filepath2>')
     .description('Compares two configuration files and shows a difference.')
     .option('-f, --format <type>', 'output format')
-    .action(() => gendiff(...program.processedArgs));
+    .action(() => {
+      const result = gendiff(...program.processedArgs);
+      console.log(result);
+    });
 
   program.parse();
 

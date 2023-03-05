@@ -1,7 +1,12 @@
 # file: .github/workflows/linter-runner.yml
 name: linter
 # on – определяет события, которые запускают воркфлоу
-on: push
+on: 
+  push:
+    branches:
+      - '**'
+    tags:
+      - '**'
 jobs:
   # build – произвольно выбранное имя задания
   # их может быть больше одного

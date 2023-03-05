@@ -26,3 +26,5 @@ jobs:
           #cache: 'npm' # ускоряет повторные сборки  
       - name: linter test
         run: make lint
+      - name: code coverage
+        run: make test-coverage   

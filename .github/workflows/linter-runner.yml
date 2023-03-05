@@ -16,13 +16,13 @@ jobs:
     steps:
       # Клонируем репозиторий
       - uses: actions/checkout@v3
+      # Ставим зависимости
+      - name: install dependencies
+        run: make install
       # Устанавливаем Node.js
       - uses: actions/setup-node@v3
         with:
           node-version: '18.x'
-          cache: 'npm' # ускоряет повторные сборки  
-      # Ставим зависимости
-      - name: install dependencies
-        run: make install
+          #cache: 'npm' # ускоряет повторные сборки  
       - name: linter test
         run: make lint

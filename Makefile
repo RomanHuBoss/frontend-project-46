@@ -1,4 +1,8 @@
+install: 
+	npm ci
+gendiff:
+	node bin/gendiff.js	
 lint:
-	npx eslint .
+	npx eslint
 publish:
-	npm publish
+	npm publish --dry-run

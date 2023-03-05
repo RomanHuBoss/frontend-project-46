@@ -4,6 +4,10 @@
   "description": "[![Actions Status](https://github.com/RomanHuBoss/frontend-project-46/workflows/hexlet-check/badge.svg)](https://github.com/RomanHuBoss/frontend-project-46/actions)",
   "main": "src/gendiff.js",
   "type": "module",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RomanHuBoss/frontend-project-46.git"
+  },  
   "jest": {
     "testEnvironment": "node",
     "transform": {}
@@ -12,13 +16,13 @@
     "pre-push": "make lint"
   },
   "engines": {
-    "node": ">=14"
+    "node": ">=18"
   },
   "bin": {
     "nodejs-package": "bin/gendiff.js"
   },
   "scripts": {
-    "test": "cross-env NODE_OPTIONS=--experimental-vm-modules npx jest"
+    "test": "npx cross-env NODE_OPTIONS=\"--experimental-vm-modules --trace-warnings\" jest"
   },
   "author": "",
   "license": "ISC",

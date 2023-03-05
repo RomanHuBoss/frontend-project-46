@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 import { Command } from 'commander';
 import * as fs from 'node:fs';
 import * as path from 'path';
@@ -8,7 +10,7 @@ export const getFileData = (filepath) => {
   try {
     return fs.readFileSync(realPath, 'utf8');
   } catch (err) {
-    console.error(err);
+    return null;
   }
 
   return null;
@@ -67,7 +69,6 @@ const handleCommandLine = () => {
     .option('-f, --format <type>', 'output format')
     .action(() => {
       const result = gendiff(...program.processedArgs);
-      console.log(result);
     });
 
   program.exitOverride();
@@ -75,7 +76,7 @@ const handleCommandLine = () => {
   try {
     program.parse(process.argv);
   } catch (err) {
-    console.log(err);
+    return null;
   }
 
   return program.processedArgs;

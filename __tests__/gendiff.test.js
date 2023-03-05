@@ -1,4 +1,4 @@
-import gendiff, { getFileData, removeSpaces } from '../src/gendiff.js';
+import gendiff, { getFileData, removeSpaces } from '../bin/gendiff.js';
 
 const data = getFileData('__fixtures__/verify_check1.txt');
 

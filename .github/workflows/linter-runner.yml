@@ -27,4 +27,4 @@ jobs:
       - name: linter test
         run: make lint
       - name: code coverage
-        run: make test-coverage   
+        run: make test-coverage

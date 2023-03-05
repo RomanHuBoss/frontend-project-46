@@ -13,8 +13,16 @@ jobs:
   linter:
     # операционная система для работы воркфлоу
     runs-on: ubuntu-latest
-    steps: # список шагов, которые надо выполнить
-      # экшен, выполняет какую-то задачу
-      # checkout – клонирует репозиторий
+    steps:
+      # Клонируем репозиторий
       - uses: actions/checkout@v3
-      - run: npm test
+      # Устанавливаем Node.js
+      - uses: actions/setup-node@v3
+        with:
+          node-version: '18.x'
+          cache: 'npm' # ускоряет повторные сборки  
+      # Ставим зависимости
+      - name: install dependencies
+        run: make install
+      - name: linter test
+        run: make lint

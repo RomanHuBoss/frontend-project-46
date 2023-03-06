@@ -1,8 +1,0 @@
-{
-    + boolean: true
-    - candle: light
-    + candle: dark
-    + float: 1.25
-    number: 5
-    - string: value
-}

@@ -1,29 +1,15 @@
----
-
 plugins:
-  # https://github.com/jest-community/eslint-plugin-jest
+  - babel
   - jest
 
-# https://eslint.org/docs/user-guide/configuring#specifying-environments
 env:
   node: true
+  jest: true
+
+parser: babel-eslint
 
 extends:
   - 'airbnb-base'
-  - 'plugin:jest/recommended'
-
-parserOptions:
-  ecmaVersion: 14
-  sourceType: 'module'
-  allowImportExportEverywhere: true
-  ecmaFeatures:
-    modules: true,
-    legacyDecorators: true
 
 rules:
   no-console: 0
-  import/extensions: # FIXME: remove when rule will be adjusted for new nodejs version
-    - error
-    - js: always
-  no-underscore-dangle: [2, { "allow": ["__filename", "__dirname"] }]
-  linebreak-style: ["error", "windows"]
